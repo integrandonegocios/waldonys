@@ -31,7 +31,7 @@ export function Hero() {
         </p>
         <div className="actions">
           <a href="#musica" className="action primary">
-            <Headphones size={17} /> OUVIR AGORA <ArrowUpRight size={17} />
+            <Headphones size={17} /> EXPLORAR MÚSICA <ArrowUpRight size={17} />
           </a>
           <a href="#agenda" className="action outline">
             VER AGENDA <ArrowUpRight size={17} />

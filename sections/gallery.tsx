@@ -55,6 +55,9 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
         ))}
       </fieldset>
       <div className="gallery-grid" aria-live="polite">
+        {visible.length === 0 && (
+          <p className="gallery-empty">Ainda não há fotografias nesta categoria.</p>
+        )}
         {visible.map((image) => (
           <button
             className="gallery-item"

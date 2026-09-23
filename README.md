@@ -50,3 +50,7 @@ A validação visual em desktop/notebook/tablet/celular depende de navegador con
 ## Conteúdo pendente
 
 Fotografias autorizadas, biografia e marcos com fontes, acervo sobre Luiz Gonzaga, discografia, URLs oficiais, vídeos, agenda confirmada, contatos de contratação e textos legais. A imagem de referência mencionada no briefing não estava disponível nos anexos recebidos.
+
+## Revisão de interface — 23/09/2026
+
+Ampliada a tipografia auxiliar e dos formulários, ajustado o menu para telas intermediárias e corrigida a galeria com uma única imagem filtrada. No celular, as fotos usam uma coluna. Adicionados estado vazio da galeria e foco explícito nos campos. Ações demonstrativas receberam rótulos compatíveis com sua disponibilidade. Build, lint e TypeScript passaram; inspeção visual e testes interativos continuam pendentes porque nenhum navegador estava conectado.

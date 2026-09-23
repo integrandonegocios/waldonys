@@ -56,7 +56,6 @@ export function PlatformLink({
     <span className="platform-pending">
       <span className="text-link">
         {children}
-        <ArrowUpRight size={15} />
       </span>
       <small>Perfil oficial a confirmar</small>
     </span>

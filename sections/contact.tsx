@@ -143,7 +143,7 @@ export function Contact() {
           className="action primary submit"
           aria-describedby="form-note"
         >
-          ENVIAR SOLICITAÇÃO <ArrowUpRight size={17} />
+          TESTAR FORMULÁRIO <ArrowUpRight size={17} />
         </Button>
         {feedback && (
           <output className="form-feedback" aria-live="polite">

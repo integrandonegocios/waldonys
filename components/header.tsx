@@ -36,7 +36,7 @@ export function Header() {
           </a>
         ))}
       </nav>
-      <a className="header-contact" href="#contato">
+      <a className="header-contact" href="#contato" onClick={() => setOpen(false)}>
         Contrate <ArrowUpRight size={15} />
       </a>
       <Button

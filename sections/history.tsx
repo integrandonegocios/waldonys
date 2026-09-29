@@ -3,15 +3,17 @@ import {
   DemoNote,
   EditorialImage,
 } from '@/components/editorial';
+import Image from 'next/image';
 import type { ArtistContent } from '@/types/content';
 export function History({ artist }: { artist: ArtistContent }) {
   return (
     <section id="historia" className="section history">
       <div className="history-photo">
         <EditorialImage
-          src="/images/stage.jpg"
-          alt="Microfone de palco; imagem ilustrativa para futura fotografia de Waldonys"
-          caption="O som é o ponto de partida."
+          src="/images/perfil.jpg"
+          alt="Waldonys tocando acordeão durante uma apresentação"
+          caption="Uma vida dedicada à música."
+          className="history-portrait"
         />
         <span className="photo-index">01 / ESSÊNCIA</span>
       </div>
@@ -64,13 +66,17 @@ export function History({ artist }: { artist: ArtistContent }) {
 export function Legacy({ artist }: { artist: ArtistContent }) {
   return (
     <section id="legado" className="legacy section">
-      <div className="legacy-symbol" aria-hidden="true">
-        LG<span>RAÍZES & LEGADO</span>
+      <div className="legacy-photo">
+        <Image
+          src="/images/luis.jpg"
+          alt="Luiz Gonzaga ao lado de Waldonys ainda criança"
+          width={900}
+          height={900}
+          loading="lazy"
+        />
+        <span>RAÍZES & LEGADO</span>
       </div>
       <div>
-        <p className="eyebrow">
-          <span /> UM ENCONTRO COM A TRADIÇÃO
-        </p>
         <h2>
           Waldonys &<br />
           <em>Luiz Gonzaga.</em>
@@ -82,10 +88,29 @@ export function Legacy({ artist }: { artist: ArtistContent }) {
         {artist.legacy ? (
           <p className="body-copy">{artist.legacy}</p>
         ) : (
-          <DemoNote>
-            O acervo, os relatos e os marcos desta história serão publicados
-            após verificação das fontes.
-          </DemoNote>
+          <div className="legacy-copy">
+            <p className="body-copy">
+              Luiz Gonzaga e Waldonys representam duas gerações unidas pela
+              força da música nordestina.
+            </p>
+            <p className="body-copy">
+              Conhecido como o Rei do Baião, Luiz Gonzaga levou para todo o
+              Brasil os sons, as histórias e os sentimentos do sertão. Com sua
+              sanfona, sua voz e sua identidade marcante, transformou o baião,
+              o xote e o xaxado em símbolos da cultura nordestina.
+            </p>
+            <p className="body-copy">
+              Waldonys segue essa tradição com personalidade própria.
+              Sanfoneiro, cantor e compositor cearense, cresceu influenciado
+              pela obra de Gonzaga e tornou-se um dos grandes representantes da
+              música regional brasileira, mantendo viva a essência do forró e
+              levando a sanfona para novas gerações.
+            </p>
+            <p className="body-copy">
+              Juntos, simbolizam a continuidade de uma história feita de
+              música, raízes, memória e amor pelo Nordeste.
+            </p>
+          </div>
         )}
       </div>
     </section>

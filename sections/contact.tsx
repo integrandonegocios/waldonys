@@ -9,9 +9,6 @@ export function Contact() {
   return (
     <section id="contato" className="section contact">
       <div>
-        <p className="eyebrow">
-          <span /> VAMOS CRIAR UM GRANDE ENCONTRO
-        </p>
         <h2>
           O seu evento.
           <br />

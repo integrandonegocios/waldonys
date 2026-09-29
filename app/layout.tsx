@@ -3,7 +3,7 @@ import './globals.css';
 import { site } from '@/data/site';
 export const metadata: Metadata = {
   metadataBase: new URL(site.origin),
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: { url: '/favicon-sanfona.png', type: 'image/png' }, apple: '/favicon-sanfona.png' },
   title: 'Waldonys | Música, tradição e liberdade',
   description: site.description,
   robots: { index: false, follow: false },

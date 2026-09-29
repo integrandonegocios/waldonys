@@ -1,6 +1,7 @@
 'use client';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { navigation } from '@/data/site';
 export function Header() {
@@ -22,8 +23,8 @@ export function Header() {
   }, [open]);
   return (
     <header className={`header ${scrolled || open ? 'solid' : ''}`}>
-      <a className="wordmark" href="#inicio" aria-label="Waldonys — início">
-        WALDONYS<span>✦</span>
+      <a className="site-logo" href="/#inicio" aria-label="Waldonys — início">
+        <Image unoptimized src="/images/logowaldonys.png" alt="Waldonys" width={1536} height={1024} />
       </a>
       <nav
         aria-label="Navegação principal"
@@ -31,14 +32,11 @@ export function Header() {
         className={open ? 'navigation open' : 'navigation'}
       >
         {navigation.map(([name, id]) => (
-          <a key={id} href={`#${id}`} onClick={() => setOpen(false)}>
+          <a key={id} href={name === 'Vídeos' ? '/videos' : `/#${id}`} onClick={() => setOpen(false)}>
             {name}
           </a>
         ))}
       </nav>
-      <a className="header-contact" href="#contato" onClick={() => setOpen(false)}>
-        Contrate <ArrowUpRight size={15} />
-      </a>
       <Button
         variant="ghost"
         className="menu-toggle"

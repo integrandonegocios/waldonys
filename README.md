@@ -1,6 +1,6 @@
 # Waldonys — conceito de site oficial
 
-Home editorial em português, com estética grafite/âmbar e conteúdo provisório explícito. Nenhuma imagem representa uma fotografia oficial do artista. Não há shows, estatísticas ou fatos biográficos inventados.
+Home editorial em português, com estética grafite/âmbar e conteúdo provisório explícito. O banner principal foi fornecido pelo usuário e é exibido integralmente; os demais assets permanecem ilustrativos. Não há shows, estatísticas ou fatos biográficos inventados.
 
 ## Tecnologia
 
@@ -54,3 +54,13 @@ Fotografias autorizadas, biografia e marcos com fontes, acervo sobre Luiz Gonzag
 ## Revisão de interface — 23/09/2026
 
 Ampliada a tipografia auxiliar e dos formulários, ajustado o menu para telas intermediárias e corrigida a galeria com uma única imagem filtrada. No celular, as fotos usam uma coluna. Adicionados estado vazio da galeria e foco explícito nos campos. Ações demonstrativas receberam rótulos compatíveis com sua disponibilidade. Build, lint e TypeScript passaram; inspeção visual e testes interativos continuam pendentes porque nenhum navegador estava conectado.
+
+Banner fornecido em 23/09/2026 aplicado em tela cheia, com recorte proporcional conforme a tela, navegação transparente sobre a arte e título acessível.
+
+## Home compacta
+
+A página exibe apenas banner em tela cheia, seção musical e espaço para Instagram, com navegação e rodapé reduzidos. Seções anteriores continuam disponíveis no código, mas fora da home. Configure `site.media.spotifyUrl` ou `site.media.youtubeId` para o player (Spotify tem preferência quando ambos estão definidos). Links oficiais e posts do Instagram aguardam envio do usuário; o espaço reservado não representa um feed conectado.
+
+## Banners em tela cheia
+
+O topo usa carrossel com cinco posições em `data/banners.ts`. As cinco posições repetem a arte fornecida, conforme autorizado pelo usuário, e podem ser substituídas individualmente. Posições vazias não geram slides. Com duas ou mais artes, aparecem setas, indicadores e controle de reprodução. A troca ocorre a cada seis segundos, pausa ao interagir ou sair da aba e respeita movimento reduzido. Deslize horizontal e teclas de seta permitem navegar. As imagens preenchem a tela com recorte proporcional; `position` permite ajustar o enquadramento de cada arte.

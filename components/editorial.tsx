@@ -14,13 +14,11 @@ export function SectionHeading({
   title: ReactNode;
   children?: ReactNode;
 }) {
+  void number;
+  void label;
   return (
     <div className="section-heading">
       <div>
-        <p className="eyebrow">
-          <span />
-          {number} — {label}
-        </p>
         <h2>{title}</h2>
       </div>
       {children}
@@ -82,9 +80,7 @@ export function EditorialImage({
         width={1200}
         height={800}
       />
-      <figcaption>
-        {caption} <span>IMAGEM ILUSTRATIVA</span>
-      </figcaption>
+      <figcaption>{caption}</figcaption>
     </figure>
   );
 }

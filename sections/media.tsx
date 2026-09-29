@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Disc3, Music2, Film, ArrowUpRight, Camera } from 'lucide-react';
+import { Music2, Film, ArrowUpRight, Camera } from 'lucide-react';
 import { SectionHeading, DemoNote, PlatformLink } from '@/components/editorial';
 import { spotifyEmbedUrl, youtubeEmbedUrl } from '@/lib/integrations/platforms';
 import type { MusicRelease, Video } from '@/types/content';
@@ -21,13 +21,15 @@ export function Music({ releases }: { releases: MusicRelease[] }) {
       </SectionHeading>
       <div className="music-feature">
         <div className="album-placeholder">
-          <div className="album-type">
-            WALDONYS<span>MÚSICA · TRADIÇÃO · LIBERDADE</span>
-          </div>
-          <Disc3 size={135} strokeWidth={0.6} />
-          <span className="image-label">
-            CAPA CONCEITUAL · NÃO É UM LANÇAMENTO
-          </span>
+          <Image
+            unoptimized
+            src="/images/showwaldonys.jpg"
+            alt="Waldonys tocando acordeão"
+            fill
+            sizes="(max-width: 800px) 100vw, 40vw"
+            className="album-art"
+          />
+          <span className="image-label">WALDONYS · MÚSICA</span>
         </div>
         <div className="music-copy">
           <p className="eyebrow">UM ESPAÇO PARA O SOM</p>
@@ -87,7 +89,7 @@ export function Videos({ videos }: { videos: Video[] }) {
         <PlatformLink platform="youtube">CANAL NO YOUTUBE</PlatformLink>
       </SectionHeading>
       <div className="video-grid">
-        {videos.map((video, i) => {
+        {videos.slice(0, 2).map((video, i) => {
           const embed = video.youtubeId
             ? youtubeEmbedUrl(video.youtubeId)
             : null;
@@ -120,7 +122,7 @@ export function Videos({ videos }: { videos: Video[] }) {
               <div className="video-caption">
                 <div>
                   <p className="eyebrow">
-                    {i ? 'ALÉM DO PALCO' : 'MÚSICA & ENCONTROS'}
+                    VÍDEO DO CANAL OFICIAL
                   </p>
                   <h3>{video.title}</h3>
                 </div>
@@ -135,6 +137,7 @@ export function Videos({ videos }: { videos: Video[] }) {
           );
         })}
       </div>
+      <a className="text-link" href="/videos">VER OS 20 VÍDEOS MAIS RECENTES <ArrowUpRight size={16} /></a>
     </section>
   );
 }

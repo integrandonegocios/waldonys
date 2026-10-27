@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { site } from '@/data/site';
+import { getSiteOrigin } from '@/lib/site-origin';
 export const metadata: Metadata = {
-  metadataBase: new URL(site.origin),
+  metadataBase: getSiteOrigin(),
   icons: { icon: { url: '/favicon-sanfona.png', type: 'image/png' }, apple: '/favicon-sanfona.png' },
   title: 'Waldonys | Música, tradição e liberdade',
   description: site.description,
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   openGraph: {
     title: 'Waldonys | Música, tradição e liberdade',
     description: site.description,

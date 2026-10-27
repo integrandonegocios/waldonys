@@ -9,11 +9,11 @@ export const site = {
     'Conheça os universos de Waldonys: música nordestina, aviação e paraquedismo.',
   // Preencher apenas com URLs dos perfis oficiais validados pela equipe.
   socials: {
-    spotify: '',
+    spotify: 'https://open.spotify.com/intl-pt/artist/5c1RSuTFiEVhE3lDqoF3Yk',
     youtube: 'https://www.youtube.com/@waldonysoficial',
     instagram: 'https://www.instagram.com/waldonys_/',
   },
-  media: { spotifyUrl: '', youtubeId: 'SksZPgsQUmA' },
+  media: { spotifyUrl: 'https://open.spotify.com/track/6btrdPmBk0WnGVYqMrEUnK', youtubeId: 'SksZPgsQUmA' },
   heroImage: '/images/banner.webp',
 };
 export const navigation = [

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Music2, Film, ArrowUpRight, Camera } from 'lucide-react';
 import { SectionHeading, DemoNote, PlatformLink } from '@/components/editorial';
 import { spotifyEmbedUrl, youtubeEmbedUrl } from '@/lib/integrations/platforms';
@@ -137,7 +138,7 @@ export function Videos({ videos }: { videos: Video[] }) {
           );
         })}
       </div>
-      <a className="text-link" href="/videos">VER OS 20 VÍDEOS MAIS RECENTES <ArrowUpRight size={16} /></a>
+      <Link className="text-link" href="/videos">VER OS 20 VÍDEOS MAIS RECENTES <ArrowUpRight size={16} /></Link>
     </section>
   );
 }

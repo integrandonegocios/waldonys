@@ -1,37 +1,31 @@
-# Waldonys — conceito de site oficial
+# Site de Waldonys
 
-Home editorial em português, com estética grafite/âmbar e conteúdo provisório explícito. O banner principal foi fornecido pelo usuário e é exibido integralmente; os demais assets permanecem ilustrativos. Não há shows, estatísticas ou fatos biográficos inventados.
+Site institucional em português, desenvolvido com React 19, TypeScript, Tailwind CSS 4, Vinext e Nitro. A publicação é feita pela Vercel, ligada ao repositório GitHub.
 
-## Tecnologia
+## Páginas e recursos
 
-React 19, TypeScript, Tailwind CSS 4, componentes shadcn/Base UI e Lucide. O scaffold Sites utiliza **Vinext**, compatível com a estrutura App Router e APIs do Next.js, sobre Vite/Cloudflare Workers; não é o runtime padrão do Next.js.
+- Página inicial com carrossel de banners, apresentação, história, legado, música, vídeos, Instagram, agenda, presskit e contratação.
+- Página `/videos` com seleção de vídeos do canal oficial; pode atualizar via YouTube Data API quando `YOUTUBE_API_KEY` estiver configurada e usa uma seleção local como alternativa.
+- Navegação responsiva, suporte a teclado, foco visível e respeito à preferência por movimento reduzido.
+- Agenda exibe somente datas confirmadas. Enquanto não houver eventos cadastrados, apresenta um estado vazio.
+- O contato profissional permanece desativado até que a equipe confirme o canal oficial de contratação. O site não coleta nem envia dados de visitantes.
 
-## Estrutura
+## Conteúdo e integrações
 
-- `app/`: Home, layout, tokens/CSS, metadados, robots e sitemap.
-- `components/`: header, footer, componentes editoriais e primitivas de formulário/dialog.
-- `sections/`: hero, história/legado, universos, música/vídeos/Instagram, agenda, galeria e contato.
-- `data/site.ts`: nome, headline, descrição, imagem de abertura e URLs oficiais a confirmar.
-- `data/demo.ts`: fixtures de demonstração isoladas.
-- `types/content.ts`: contratos para artista, timeline, shows, lançamentos, vídeos, galeria, notícias e contratação.
-- `lib/content.ts`: repositório de conteúdo substituível por backend.
-- `lib/integrations/platforms.ts`: estado `not-configured` e validação de URLs de embed, sem chamadas fictícias.
-- `assets/README.md`: procedência e orientações para substituir imagens.
-- `public/`: imagens ilustrativas, favicon e cartão social.
+- `data/site.ts`: título, descrição, perfis oficiais e mídia em destaque. Confirme URLs e direitos de uso antes do lançamento.
+- `data/demo.ts` e `lib/content.ts`: conteúdo provisório e adaptador atual. Substitua por conteúdo editorial aprovado e uma fonte de dados mantida pela equipe.
+- `data/youtube-videos.json`: seleção local de vídeos, registrada como verificada em 29/09/2026.
+- `public/images/`: banners, fotos, logotipo, favicon, cartão social e arquivo do presskit.
+- Spotify e YouTube usam embeds quando recebem URLs e IDs válidos. O feed do Instagram ainda não está conectado.
 
-## Recursos implementados
+## Antes do lançamento público
 
-Navegação por âncoras, header com mudança ao rolar, menu mobile com Escape, galeria por categoria e lightbox acessível, formulário com validação nativa e feedback explícito de não envio. Responsividade CSS para desktop, notebook, tablet e celular, foco visível, skip link e respeito a movimento reduzido.
-
-Música e vídeos só renderizam embeds quando recebem uma URL/ID válido. Links sociais não recebem URLs especulativas: preencha `site.socials` com perfis oficiais verificados. O formulário não persiste nem transmite dados.
-
-## Integrações e administração futuras
-
-Implementar `ContentRepository` com armazenamento real e substituir o adaptador demo. Spotify, YouTube e Meta devem ter adaptadores próprios; segredos somente no servidor. A API de Instagram depende de autorização Meta. A futura rota `/admin` deve ser criada junto com autenticação, autorização e backend: não foi criado um painel fictício ou desprotegido. O contrato já cobre agenda, música, vídeos, galeria, notícias e artista. Adicionar endpoint de contratação e aviso de privacidade antes de habilitar envio.
-
-## SEO
-
-Title, description, Open Graph, Twitter/X, favicon, robots e sitemap. `NEXT_PUBLIC_SITE_URL` deve ser a origem confiável de publicação. Este conceito usa **noindex** e bloqueio em robots para não indexar conteúdo de demonstração; remover após aprovação editorial e substituição dos placeholders. O sitemap utiliza a origem privada criada no Sites, substituível pelo domínio oficial na publicação pública.
+1. Revisar e aprovar biografia, marcos da carreira, fotos, legendas, presskit, música e vídeos.
+2. Inserir datas reais na agenda e confirmar os perfis e links oficiais.
+3. Configurar o canal de contratação, o tratamento seguro dos dados e o aviso de privacidade.
+4. Definir o domínio oficial e `NEXT_PUBLIC_SITE_URL`.
+5. Se houver domínio próprio, defini-lo em `NEXT_PUBLIC_SITE_URL`; sem ele, a URL de produção da Vercel é usada para metadados.
+6. Fazer uma revisão visual em celular e desktop.
 
 ## Desenvolvimento e validação
 
@@ -43,24 +37,4 @@ npx tsc --noEmit
 npm run build
 ```
 
-Servidor: URL informada por `npm run dev` (nesta sessão, http://localhost:3000).
-
-A validação visual em desktop/notebook/tablet/celular depende de navegador conectado; não foi possível executá-la nesta sessão. Conferência recomendada em 1440, 1280, 768 e 390 px: menu, ausência de overflow, leitura, filtros, lightbox/Escape e formulário inválido/válido. Core Web Vitals não foram medidos.
-
-## Conteúdo pendente
-
-Fotografias autorizadas, biografia e marcos com fontes, acervo sobre Luiz Gonzaga, discografia, URLs oficiais, vídeos, agenda confirmada, contatos de contratação e textos legais. A imagem de referência mencionada no briefing não estava disponível nos anexos recebidos.
-
-## Revisão de interface — 23/09/2026
-
-Ampliada a tipografia auxiliar e dos formulários, ajustado o menu para telas intermediárias e corrigida a galeria com uma única imagem filtrada. No celular, as fotos usam uma coluna. Adicionados estado vazio da galeria e foco explícito nos campos. Ações demonstrativas receberam rótulos compatíveis com sua disponibilidade. Build, lint e TypeScript passaram; inspeção visual e testes interativos continuam pendentes porque nenhum navegador estava conectado.
-
-Banner fornecido em 23/09/2026 aplicado em tela cheia, com recorte proporcional conforme a tela, navegação transparente sobre a arte e título acessível.
-
-## Home compacta
-
-A página exibe apenas banner em tela cheia, seção musical e espaço para Instagram, com navegação e rodapé reduzidos. Seções anteriores continuam disponíveis no código, mas fora da home. Configure `site.media.spotifyUrl` ou `site.media.youtubeId` para o player (Spotify tem preferência quando ambos estão definidos). Links oficiais e posts do Instagram aguardam envio do usuário; o espaço reservado não representa um feed conectado.
-
-## Banners em tela cheia
-
-O topo usa carrossel com cinco posições em `data/banners.ts`. As cinco posições repetem a arte fornecida, conforme autorizado pelo usuário, e podem ser substituídas individualmente. Posições vazias não geram slides. Com duas ou mais artes, aparecem setas, indicadores e controle de reprodução. A troca ocorre a cada seis segundos, pausa ao interagir ou sair da aba e respeita movimento reduzido. Deslize horizontal e teclas de seta permitem navegar. As imagens preenchem a tela com recorte proporcional; `position` permite ajustar o enquadramento de cada arte.
+O projeto usa `vite build` para gerar a saída Nitro compatível com Vercel. Na Vercel, configure o comando `npm run build`; o adaptador Nitro detecta a plataforma durante o build. Defina `NEXT_PUBLIC_SITE_URL` na Vercel com o domínio de produção para metadados e sitemap.

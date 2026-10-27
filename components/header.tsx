@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -23,9 +24,9 @@ export function Header() {
   }, [open]);
   return (
     <header className={`header ${scrolled || open ? 'solid' : ''}`}>
-      <a className="site-logo" href="/#inicio" aria-label="Waldonys — início">
+      <Link className="site-logo" href="/#inicio" aria-label="Waldonys — início">
         <Image unoptimized src="/images/logowaldonys.png" alt="Waldonys" width={1536} height={1024} />
-      </a>
+      </Link>
       <nav
         aria-label="Navegação principal"
         id="main-nav"

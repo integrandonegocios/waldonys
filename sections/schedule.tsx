@@ -1,7 +1,8 @@
 import { ArrowUpRight, MapPin } from 'lucide-react';
-import { SectionHeading, DemoNote } from '@/components/editorial';
+import { SectionHeading } from '@/components/editorial';
 import type { ShowEvent } from '@/types/content';
 export function Schedule({ events }: { events: ShowEvent[] }) {
+  const confirmedEvents = events.filter((event) => !event.demonstration && event.date);
   return (
     <section id="agenda" className="section schedule">
       <SectionHeading
@@ -19,10 +20,14 @@ export function Schedule({ events }: { events: ShowEvent[] }) {
       </SectionHeading>
       <div className="schedule-intro">
         <span className="status-dot" />
-        <p>Agenda oficial em preparação. Novas datas serão publicadas aqui.</p>
+        <p>
+          {confirmedEvents.length
+            ? 'Confira as próximas datas confirmadas.'
+            : 'Agenda oficial em preparação. Novas datas serão publicadas aqui.'}
+        </p>
       </div>
       <div className="schedule-list">
-        {events.map((event) => {
+        {confirmedEvents.length ? confirmedEvents.map((event) => {
           const date = event.date ? new Date(`${event.date}T12:00:00`) : null;
           return (
             <article className="show-row" key={event.id}>
@@ -48,11 +53,7 @@ export function Schedule({ events }: { events: ShowEvent[] }) {
                 </p>
               </div>
               <div className="show-details">
-                {event.demonstration ? (
-                  <span className="demo-badge">DEMONSTRAÇÃO</span>
-                ) : (
-                  <span>SHOW</span>
-                )}
+                <span>SHOW</span>
                 <p>{event.details}</p>
               </div>
               {event.ticketUrl ? (
@@ -66,19 +67,15 @@ export function Schedule({ events }: { events: ShowEvent[] }) {
                 </a>
               ) : (
                 <span className="unavailable">
-                  {event.demonstration
-                    ? 'SEM VENDA DE INGRESSOS'
-                    : 'INFORMAÇÕES EM BREVE'}
+                  INFORMAÇÕES EM BREVE
                 </span>
               )}
             </article>
           );
-        })}
+        }) : (
+          <p className="schedule-empty">As próximas datas serão divulgadas aqui quando estiverem confirmadas.</p>
+        )}
       </div>
-      <DemoNote>
-        A linha acima demonstra o formato da agenda e não anuncia um evento
-        real.
-      </DemoNote>
     </section>
   );
 }

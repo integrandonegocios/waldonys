@@ -37,4 +37,4 @@ npx tsc --noEmit
 npm run build
 ```
 
-O projeto usa `vite build` para gerar a saída Nitro compatível com Vercel. Na Vercel, configure o comando `npm run build`; o adaptador Nitro detecta a plataforma durante o build. Defina `NEXT_PUBLIC_SITE_URL` na Vercel com o domínio de produção para metadados e sitemap.
+O projeto usa `vite build` e Nitro para gerar a saída no formato Build Output API da Vercel. `vercel.json` configura o comando de build e a pasta de saída. Defina `NEXT_PUBLIC_SITE_URL` na Vercel quando usar um domínio próprio; sem ele, metadados e sitemap usam o domínio de produção atribuído pela Vercel.

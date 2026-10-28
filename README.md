@@ -27,6 +27,18 @@ Site institucional em português, desenvolvido com React 19, TypeScript, Tailwin
 5. Se houver domínio próprio, defini-lo em `NEXT_PUBLIC_SITE_URL`; sem ele, a URL de produção da Vercel é usada para metadados.
 6. Fazer uma revisão visual em celular e desktop.
 
+## Página temporária de manutenção
+
+Em deploys de **Production** na Vercel, a página “Estamos preparando novidades”
+é exibida por padrão. Os deploys de Preview continuam mostrando o site completo
+para revisão. A página marca o conteúdo como `noindex` e o sitemap fica vazio
+enquanto a manutenção estiver ativa.
+
+Quando o site estiver pronto, defina `SITE_EM_CONSTRUCAO=false` no escopo
+Production da Vercel e faça outro deploy. Se o domínio passar pelo proxy da
+Cloudflare, limpe o cache do domínio após cada troca para a página aparecer
+imediatamente.
+
 ## Desenvolvimento e validação
 
 ```sh

@@ -1,7 +1,18 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
 @custom-variant dark (&:is(.dark *));
+@custom-variant data-open {
+  &:where([data-state="open"]),
+  &:where([data-open]:not([data-open="false"])) {
+    @slot;
+  }
+}
+@custom-variant data-closed {
+  &:where([data-state="closed"]),
+  &:where([data-closed]:not([data-closed="false"])) {
+    @slot;
+  }
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -2091,4 +2102,65 @@ h3 {
   .hero-player-card, .hero-shows-card { padding: 20px; }
   .banner-hero:has(.hero-live-content) .banner-arrow { top: 40%; min-width: 32px; width: 32px; }
   .hero-live-shade { background: linear-gradient(90deg, #080a0bc9, #080a0b66), linear-gradient(0deg, #080a0b, transparent); }
+}
+.maintenance-page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem;
+  color: #f7f3e9;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgb(202 158 75 / 20%), transparent 55%),
+    #11120f;
+}
+
+.maintenance-card {
+  width: min(100%, 38rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maintenance-card img {
+  width: min(12rem, 48vw);
+  height: auto;
+  margin-bottom: 3rem;
+  object-fit: contain;
+}
+
+.maintenance-eyebrow {
+  margin: 0 0 1rem;
+  color: #d6b36f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.maintenance-card h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.maintenance-copy {
+  max-width: 34rem;
+  margin: 1.5rem 0 2rem;
+  color: #d2d0c8;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.maintenance-card a {
+  color: #e2c17d;
+  font-size: 0.95rem;
+  text-underline-offset: 0.3em;
+}
+
+.maintenance-card a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
 }

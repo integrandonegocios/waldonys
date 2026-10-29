@@ -1,9 +1,11 @@
 import type { MetadataRoute } from 'next';
+import { headers } from 'next/headers';
 import { getSiteOrigin } from '@/lib/site-origin';
 import { isUnderConstruction } from '@/lib/maintenance';
-export default function sitemap(): MetadataRoute.Sitemap {
-  if (isUnderConstruction()) return [];
-  const origin = getSiteOrigin();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const host = (await headers()).get('host');
+  if (isUnderConstruction(host)) return [];
+  const origin = getSiteOrigin(host);
   return [
     {
       url: new URL('/', origin).href,

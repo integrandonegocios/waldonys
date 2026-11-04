@@ -900,7 +900,7 @@ h3 {
 }
 .show-row {
   display: grid;
-  grid-template-columns: 100px 1.1fr 1fr auto;
+  grid-template-columns: 112px 1.1fr 1fr auto;
   gap: 25px;
   align-items: center;
   padding: 32px 0;
@@ -911,14 +911,22 @@ h3 {
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 74px;
+  padding-right: 16px;
 }
 .show-date strong {
-  font-size: 38px;
-  font-weight: 400;
+  color: var(--primary);
+  font-size: clamp(46px, 4vw, 58px);
+  font-weight: 500;
+  line-height: 0.9;
 }
 .show-date span {
-  font-size: 11px;
-  letter-spacing: 1.5px;
+  margin-top: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
   color: var(--primary);
 }
 .show-place h3 {
@@ -946,6 +954,7 @@ h3 {
   line-height: 1.7;
   max-width: 220px;
   margin-top: 10px;
+  white-space: pre-line;
 }
 .unavailable {
   font-size: 10px;
@@ -1438,6 +1447,11 @@ h3 {
   }
   .show-date {
     align-self: start;
+    min-height: 0;
+    padding-right: 8px;
+  }
+  .show-date strong {
+    font-size: 42px;
   }
   .show-place h3 {
     font-size: 17px;

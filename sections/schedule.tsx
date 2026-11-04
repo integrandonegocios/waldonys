@@ -15,6 +15,7 @@ export function Schedule({
   showAllLink?: boolean;
 }) {
   const confirmedEvents = upcomingShows(events);
+  const visibleEvents = showAllLink ? confirmedEvents.slice(0, 4) : confirmedEvents;
   const calendarConfigured = isShowsCalendarConfigured();
   return (
     <section id="agenda" className="section schedule">
@@ -47,7 +48,7 @@ export function Schedule({
         </p>
       </div>
       <div className="schedule-list">
-        {confirmedEvents.length ? confirmedEvents.map((event) => {
+        {visibleEvents.length ? visibleEvents.map((event) => {
           const date = new Date(`${event.date}T12:00:00`);
           return (
             <article className="show-row" key={event.id}>

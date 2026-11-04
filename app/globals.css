@@ -635,19 +635,20 @@ h3 {
   gap: 12px;
   font-size: 10px;
   letter-spacing: 1px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-  padding: 8px 11px;
-  min-height: 34px;
+  padding: 0 16px;
+  min-height: 38px;
+  border-radius: 999px;
   color: #17100a;
-  background: #e85905d9;
-  font-weight: 400;
+  background: #e85905;
   transition: background 0.2s, transform 0.2s;
 }
 .universe a:hover {
-  background: #e85905;
+  background: #fa6b16;
   transform: translateY(-1px);
 }
 .image-label {
@@ -2121,7 +2122,7 @@ h3 {
   padding: 0 11px;
   border-radius: 999px;
   background: #e85905;
-  color: #fff;
+  color: #17100a;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: .5px;

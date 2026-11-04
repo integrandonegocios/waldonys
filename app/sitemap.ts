@@ -17,5 +17,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+    {
+      url: new URL('/agenda', origin).href,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
   ];
 }

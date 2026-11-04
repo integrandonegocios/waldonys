@@ -8,6 +8,7 @@ import { Schedule } from '@/sections/schedule';
 import { Presskit } from '@/sections/presskit';
 import { Contact } from '@/sections/contact';
 import { contentRepository } from '@/lib/content';
+import { upcomingShows } from '@/lib/shows';
 
 export default async function Home() {
   const [artist, releases, videos, shows] = await Promise.all([
@@ -16,12 +17,13 @@ export default async function Home() {
     contentRepository.getVideos(),
     contentRepository.getShows(),
   ]);
+  const upcoming = upcomingShows(shows);
 
   return (
     <>
       <Header />
       <main id="conteudo">
-        <Hero events={shows} />
+        <Hero events={upcoming} />
         <section className="section artist-intro" aria-labelledby="intro-title">
           <p className="eyebrow">MÚSICA, TRADIÇÃO E LIBERDADE</p>
           <h2 id="intro-title">Waldonys. <em>O forró nunca para.</em></h2>
@@ -35,7 +37,7 @@ export default async function Home() {
         <Music releases={releases} />
         <Videos videos={videos} />
         <InstagramSection />
-        <Schedule events={shows} />
+        <Schedule events={shows} showAllLink />
         <Presskit />
         <Contact />
       </main>

@@ -1,24 +1,10 @@
 import type {
-  ShowEvent,
   MusicRelease,
   Video,
   GalleryImage,
   ArtistContent,
 } from '@/types/content';
 // Fixtures explícitas. Nunca retornar como dados publicados por uma integração.
-export const demoShows: ShowEvent[] = [
-  {
-    id: 'demo-1',
-    date: null,
-    city: 'Cidade a confirmar',
-    state: '—',
-    venue: 'Local do evento a definir',
-    time: null,
-    details: 'Linha ilustrativa. Não representa um show anunciado.',
-    ticketUrl: null,
-    demonstration: true,
-  },
-];
 export const demoMusic: MusicRelease[] = [
   {
     id: 'demo-album',

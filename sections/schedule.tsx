@@ -1,8 +1,21 @@
+import Link from 'next/link';
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import { SectionHeading } from '@/components/editorial';
 import type { ShowEvent } from '@/types/content';
-export function Schedule({ events }: { events: ShowEvent[] }) {
-  const confirmedEvents = events.filter((event) => !event.demonstration && event.date);
+import {
+  isShowsCalendarConfigured,
+  upcomingShows,
+} from '@/lib/shows';
+
+export function Schedule({
+  events,
+  showAllLink = false,
+}: {
+  events: ShowEvent[];
+  showAllLink?: boolean;
+}) {
+  const confirmedEvents = upcomingShows(events);
+  const calendarConfigured = isShowsCalendarConfigured();
   return (
     <section id="agenda" className="section schedule">
       <SectionHeading
@@ -17,44 +30,43 @@ export function Schedule({ events }: { events: ShowEvent[] }) {
         <a className="text-link" href="#contato">
           LEVE WALDONYS AO SEU EVENTO <ArrowUpRight size={16} />
         </a>
+        {showAllLink && (
+          <Link className="text-link" href="/agenda">
+            ABRIR A AGENDA COMPLETA <ArrowUpRight size={16} />
+          </Link>
+        )}
       </SectionHeading>
       <div className="schedule-intro">
         <span className="status-dot" />
         <p>
           {confirmedEvents.length
             ? 'Confira as próximas datas confirmadas.'
-            : 'Agenda oficial em preparação. Novas datas serão publicadas aqui.'}
+            : calendarConfigured
+              ? 'Nenhuma data confirmada para divulgação no momento.'
+              : 'Agenda oficial em preparação. Novas datas serão publicadas aqui.'}
         </p>
       </div>
       <div className="schedule-list">
         {confirmedEvents.length ? confirmedEvents.map((event) => {
-          const date = event.date ? new Date(`${event.date}T12:00:00`) : null;
+          const date = new Date(`${event.date}T12:00:00`);
           return (
             <article className="show-row" key={event.id}>
-              <div className="show-date">
-                <strong>
-                  {date ? date.getDate().toString().padStart(2, '0') : '—'}
-                </strong>
-                <span>
-                  {date
-                    ? date.toLocaleDateString('pt-BR', { month: 'short' })
-                    : 'EM BREVE'}
-                </span>
-              </div>
+              <time className="show-date" dateTime={event.date}>
+                <strong>{date.getDate().toString().padStart(2, '0')}</strong>
+                <span>{date.toLocaleDateString('pt-BR', { month: 'short' })}</span>
+              </time>
               <div className="show-place">
-                <h3>
-                  {event.city}
-                  {event.state !== '—' ? ` / ${event.state}` : ''}
-                </h3>
-                <p>
-                  <MapPin size={13} />
-                  {event.venue}
-                  {event.time ? ` · ${event.time}` : ''}
-                </p>
+                <h3>{event.title}</h3>
+                {(event.location || event.time) && (
+                  <p>
+                    {event.location && <><MapPin size={13} />{event.location}</>}
+                    {event.time && ` · ${event.time}`}
+                  </p>
+                )}
               </div>
               <div className="show-details">
                 <span>SHOW</span>
-                <p>{event.details}</p>
+                {event.details && <p>{event.details}</p>}
               </div>
               {event.ticketUrl ? (
                 <a
@@ -65,15 +77,15 @@ export function Schedule({ events }: { events: ShowEvent[] }) {
                 >
                   INGRESSOS <ArrowUpRight size={16} />
                 </a>
-              ) : (
-                <span className="unavailable">
-                  INFORMAÇÕES EM BREVE
-                </span>
-              )}
+              ) : <span className="unavailable">SHOW CONFIRMADO</span>}
             </article>
           );
         }) : (
-          <p className="schedule-empty">As próximas datas serão divulgadas aqui quando estiverem confirmadas.</p>
+          <p className="schedule-empty">
+            {calendarConfigured
+              ? 'Volte em breve para conferir as próximas datas.'
+              : 'As próximas datas serão divulgadas aqui quando estiverem confirmadas.'}
+          </p>
         )}
       </div>
     </section>

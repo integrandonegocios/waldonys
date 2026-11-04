@@ -15,14 +15,12 @@ export interface GalleryImage {
 }
 export interface ShowEvent {
   id: string;
-  date: string | null;
-  city: string;
-  state: string;
-  venue: string;
+  date: string;
+  title: string;
+  location: string | null;
   time: string | null;
   details: string;
   ticketUrl: string | null;
-  demonstration: boolean;
 }
 export interface MusicRelease {
   id: string;

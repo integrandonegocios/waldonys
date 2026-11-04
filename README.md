@@ -7,7 +7,7 @@ Site institucional em português, desenvolvido com React 19, TypeScript, Tailwin
 - Página inicial com carrossel de banners, apresentação, história, legado, música, vídeos, Instagram, agenda, presskit e contratação.
 - Página `/videos` com seleção de vídeos do canal oficial; pode atualizar via YouTube Data API quando `YOUTUBE_API_KEY` estiver configurada e usa uma seleção local como alternativa.
 - Navegação responsiva, suporte a teclado, foco visível e respeito à preferência por movimento reduzido.
-- Agenda exibe somente datas confirmadas. Enquanto não houver eventos cadastrados, apresenta um estado vazio.
+- Agenda de shows em `/#agenda` e `/agenda`, exibindo apenas eventos futuros e confirmados.
 - O contato profissional permanece desativado até que a equipe confirme o canal oficial de contratação. O site não coleta nem envia dados de visitantes.
 
 ## Conteúdo e integrações
@@ -17,6 +17,10 @@ Site institucional em português, desenvolvido com React 19, TypeScript, Tailwin
 - `data/youtube-videos.json`: seleção local de vídeos, registrada como verificada em 29/09/2026.
 - `public/images/`: banners, fotos, logotipo, favicon, cartão social e arquivo do presskit.
 - Spotify e YouTube usam embeds quando recebem URLs e IDs válidos. O feed do Instagram ainda não está conectado.
+
+### Atualizar a agenda de shows
+
+Crie um calendário Google separado para shows que já podem ser divulgados, configure o fuso horário como Fortaleza e marque-o como público. Depois, configure `SHOWS_ICAL_URL` com o endereço público em formato iCal na Vercel. A agenda busca os eventos no servidor e atualiza o cache a cada cinco minutos. Use o título do evento para o nome do show, o campo de local para cidade/local, a descrição para detalhes e o campo URL para ingressos. Crie um evento individual para cada show; eventos cancelados e datas passadas não aparecem no site. Nunca use o endereço iCal secreto de um calendário pessoal.
 
 ## Antes do lançamento público
 

@@ -42,12 +42,36 @@ function httpsUrl(value: string | undefined) {
 
 function descriptionContent(value: string | undefined, calendarUrl?: string) {
   const description = value ? unescapeCalendarText(value) : '';
-  const ticketLine = /(?:^|\n)[ \t]*(?:ingressos?|tickets?)[ \t]*:[ \t]*(https:\/\/[^\s]+)/i;
-  const ticketMatch = description.match(ticketLine);
-  const ticketUrl = httpsUrl(calendarUrl) ?? httpsUrl(ticketMatch?.[1]);
-  const details = ticketMatch
-    ? description.replace(ticketLine, '\n').replace(/\n{3,}/g, '\n\n').trim()
-    : description.trim();
+  const plainTicket = description.match(
+    /(?:ingressos?|tickets?)[ \t]*:[ \t]*(https:\/\/[^\s<]+)/i,
+  );
+  const ticketAnchor = [...description.matchAll(
+    /<a\b[^>]*href=["'](https:\/\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,
+  )].find((match) => {
+    const before = description.slice(Math.max(0, (match.index ?? 0) - 100), match.index);
+    return /ingressos?|tickets?/i.test(`${before} ${match[2]}`);
+  });
+  const ticketUrl = httpsUrl(calendarUrl)
+    ?? httpsUrl(plainTicket?.[1])
+    ?? httpsUrl(ticketAnchor?.[1]);
+  const readableDescription = description
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/(?:p|div|li)>/gi, '\n')
+    .replace(/<a\b[^>]*>([\s\S]*?)<\/a>/gi, '$1')
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'");
+  const details = (ticketUrl
+    ? readableDescription.replace(
+        /^[ \t]*(?:ingressos?|tickets?)[ \t]*:?[\t ]*[^\n]*(?:\n|$)/gim,
+        '',
+      )
+    : readableDescription
+  ).replace(/\n{3,}/g, '\n\n').trim();
   return { details, ticketUrl };
 }
 

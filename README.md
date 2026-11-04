@@ -20,7 +20,7 @@ Site institucional em português, desenvolvido com React 19, TypeScript, Tailwin
 
 ### Atualizar a agenda de shows
 
-Crie um calendário Google separado para shows que já podem ser divulgados, configure o fuso horário como Fortaleza e marque-o como público. Depois, configure `SHOWS_ICAL_URL` com o endereço público em formato iCal na Vercel. A agenda busca os eventos no servidor e atualiza o cache a cada cinco minutos. Use o título do evento para o nome do show, o campo de local para cidade/local e a descrição para detalhes. Para ingressos, coloque uma linha separada na descrição no formato `Ingressos: https://...`; a agenda transforma esse endereço no botão **INGRESSOS**. Crie um evento individual para cada show; eventos cancelados e datas passadas não aparecem no site. Nunca use o endereço iCal secreto de um calendário pessoal.
+Crie um calendário Google separado para shows que já podem ser divulgados, configure o fuso horário como Fortaleza e marque-o como público. Depois, configure `SHOWS_ICAL_URL` com o endereço público em formato iCal na Vercel. A agenda busca os eventos no servidor e atualiza o cache a cada cinco minutos. Use o título do evento para o nome do show, o campo de local para cidade/local e a descrição para detalhes. Para ingressos, adicione na descrição uma linha `Ingressos:` seguida da URL ou de um link clicável; a agenda transforma esse endereço no botão **INGRESSOS**. Crie um evento individual para cada show; eventos cancelados e datas passadas não aparecem no site. Nunca use o endereço iCal secreto de um calendário pessoal.
 
 ## Antes do lançamento público
 

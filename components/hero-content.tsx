@@ -1,4 +1,4 @@
-import { Play, Camera, Music2, CalendarDays, ArrowUpRight } from 'lucide-react';
+import { Play, Camera, CalendarDays, ArrowUpRight } from 'lucide-react';
 import { FaSpotify, FaYoutube } from 'react-icons/fa';
 import { site } from '@/data/site';
 import { spotifyEmbedUrl, youtubeEmbedUrl } from '@/lib/integrations/platforms';
@@ -11,7 +11,7 @@ export function HeroContent({ events }: { events: ShowEvent[] }) {
   const socials = [
     { name: 'Instagram', url: site.socials.instagram, Icon: Camera },
     { name: 'YouTube', url: site.socials.youtube, Icon: FaYoutube },
-    { name: 'Spotify', url: site.socials.spotify, Icon: Music2 },
+    { name: 'Spotify', url: site.socials.spotify, Icon: FaSpotify },
   ];
   return (
     <div className="hero-live-content">

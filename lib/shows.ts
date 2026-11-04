@@ -30,6 +30,27 @@ function unescapeCalendarText(value: string) {
     .replace(/\\\\/g, '\\');
 }
 
+function httpsUrl(value: string | undefined) {
+  if (!value) return null;
+  try {
+    const candidate = new URL(value.trim().replace(/[),.;]+$/, ''));
+    return candidate.protocol === 'https:' ? candidate.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function descriptionContent(value: string | undefined, calendarUrl?: string) {
+  const description = value ? unescapeCalendarText(value) : '';
+  const ticketLine = /(?:^|\n)[ \t]*(?:ingressos?|tickets?)[ \t]*:[ \t]*(https:\/\/[^\s]+)/i;
+  const ticketMatch = description.match(ticketLine);
+  const ticketUrl = httpsUrl(calendarUrl) ?? httpsUrl(ticketMatch?.[1]);
+  const details = ticketMatch
+    ? description.replace(ticketLine, '\n').replace(/\n{3,}/g, '\n\n').trim()
+    : description.trim();
+  return { details, ticketUrl };
+}
+
 function fortalezaDateTime(date: Date) {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'America/Fortaleza',
@@ -71,21 +92,15 @@ function eventFromLines(lines: string[]): ShowEvent | null {
   const start = property(lines, 'DTSTART');
   const title = property(lines, 'SUMMARY')?.value;
   const location = property(lines, 'LOCATION')?.value;
-  const details = property(lines, 'DESCRIPTION')?.value;
+  const description = property(lines, 'DESCRIPTION')?.value;
   if (status === 'CANCELLED' || !start || !title) return null;
 
   const parsedStart = parseStart(start);
   if (!parsedStart) return null;
-  const rawUrl = property(lines, 'URL')?.value;
-  let ticketUrl: string | null = null;
-  if (rawUrl) {
-    try {
-      const candidate = new URL(rawUrl);
-      if (candidate.protocol === 'https:') ticketUrl = candidate.href;
-    } catch {
-      ticketUrl = null;
-    }
-  }
+  const { details, ticketUrl } = descriptionContent(
+    description,
+    property(lines, 'URL')?.value,
+  );
 
   return {
     id: property(lines, 'UID')?.value || `${parsedStart.date}-${title}`,
@@ -93,7 +108,7 @@ function eventFromLines(lines: string[]): ShowEvent | null {
     time: parsedStart.time,
     title: unescapeCalendarText(title),
     location: location ? unescapeCalendarText(location) : null,
-    details: details ? unescapeCalendarText(details) : '',
+    details,
     ticketUrl,
   };
 }

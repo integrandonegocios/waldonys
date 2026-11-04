@@ -1841,19 +1841,40 @@ h3 {
   margin-top: 0;
 }
 .compact-footer {
-  padding: 28px 8%;
-  display: flex;
+  padding: 28px 8% 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
   gap: 16px;
   border-top: 1px solid var(--border);
 }
-.compact-footer p {
-  font-size: 13px;
-  color: var(--muted-foreground);
+.compact-footer .site-logo {
+  grid-column: 2;
+  justify-self: center;
+  width: 96px;
+}
+.footer-back-to-top {
+  grid-column: 3;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--foreground);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.footer-back-to-top:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+.footer-back-to-top:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 50%;
 }
 .footer-credit {
+  grid-column: 1 / -1;
   flex-basis: 100%;
   display: flex;
   justify-content: center;

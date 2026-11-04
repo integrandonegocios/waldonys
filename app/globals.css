@@ -2096,7 +2096,7 @@ h3 {
 .hero-bottom-cards small { font-size: 11px; color: #b6b7b8; }
 .hero-card-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
 .hero-card-heading a { display: inline-flex; align-items: center; gap: 6px; color: #e85905; font-size: 11px; min-height: 32px; }
-.hero-show-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 18px; gap: 16px; }
+.hero-show-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 18px; gap: 16px; }
 .hero-show-list article { display: flex; align-items: flex-start; gap: 12px; min-width: 0; padding-left: 16px; border-left: 1px solid #ffffff25; }
 .hero-show-list article:first-child { padding-left: 0; border-left: 0; }
 .hero-show-list time { color: #e85905; display: flex; flex-direction: column; text-transform: uppercase; }
@@ -2104,7 +2104,25 @@ h3 {
 .hero-show-list time span { font-size: 12px; }
 .hero-show-list h3 { font-size: 14px; margin: 6px 0; }
 .hero-show-list small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hero-show-list a { font-size: 12px; color: #e85905; }
+.hero-show-list .hero-ticket-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 30px;
+  margin-top: 8px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: #e85905;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  white-space: nowrap;
+  transition: background-color .2s ease, transform .2s ease;
+}
+.hero-show-list .hero-ticket-button:hover { background: #fa6b16; transform: translateY(-1px); }
+.hero-show-list .hero-ticket-button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .header:not(.solid):has(~ main .hero-live-content),
 .header:not(.solid):has(~ main .hero-live-content) .navigation a { color: #fff; }
 @media (max-width: 800px) {

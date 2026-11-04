@@ -7,7 +7,7 @@ import type { ShowEvent } from '@/types/content';
 export function HeroContent({ events }: { events: ShowEvent[] }) {
   const spotify = spotifyEmbedUrl(site.media.spotifyUrl);
   const youtube = youtubeEmbedUrl(site.media.youtubeId);
-  const upcoming = events.slice(0, 3);
+  const upcoming = events.slice(0, 4);
   const socials = [
     { name: 'Instagram', url: site.socials.instagram, Icon: Camera },
     { name: 'YouTube', url: site.socials.youtube, Icon: FaYoutube },
@@ -59,7 +59,7 @@ export function HeroContent({ events }: { events: ShowEvent[] }) {
           {upcoming.length ? (
             <div className="hero-show-list">{upcoming.map((event) => {
               const date = new Date(`${event.date}T12:00:00`);
-              return <article key={event.id}><time dateTime={event.date}><strong>{date.getDate().toString().padStart(2, '0')}</strong><span>{date.toLocaleDateString('pt-BR', { month: 'short' })}</span></time><div>{event.location && <small>{event.location}</small>}<h3>{event.title}</h3>{event.time && <small>{event.time}</small>}{event.ticketUrl && <a href={event.ticketUrl} target="_blank" rel="noopener noreferrer">Ingressos ↗</a>}</div></article>;
+              return <article key={event.id}><time dateTime={event.date}><strong>{date.getDate().toString().padStart(2, '0')}</strong><span>{date.toLocaleDateString('pt-BR', { month: 'short' })}</span></time><div>{event.location && <small>{event.location}</small>}<h3>{event.title}</h3>{event.time && <small>{event.time}</small>}{event.ticketUrl && <a className="hero-ticket-button" href={event.ticketUrl} target="_blank" rel="noopener noreferrer">INGRESSOS <ArrowUpRight size={12} aria-hidden="true" /></a>}</div></article>;
             })}</div>
           ) : <div className="hero-shows-empty"><CalendarDays size={28} aria-hidden="true" /><div><strong>Novos encontros vêm aí.</strong><p>As próximas datas serão divulgadas aqui.</p></div></div>}
         </section>

@@ -1882,15 +1882,19 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-wrap: nowrap;
+  gap: 10px;
   color: var(--muted-foreground);
   font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
 }
 .footer-credit img {
   display: block;
-  width: 72px;
+  width: clamp(64px, 20vw, 82px);
+  max-height: 40px;
   height: auto;
+  object-fit: contain;
 }
 .footer-credit a:hover { color: var(--foreground); }
 .footer-credit a:focus-visible { outline: 2px solid var(--primary); outline-offset: 6px; border-radius: 6px; }

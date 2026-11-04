@@ -1323,6 +1323,9 @@ h3 {
   .unavailable {
     grid-column: 2/4;
   }
+  .show-row > .ticket-button {
+    grid-column: 2/4;
+  }
   .contact {
     gap: 7%;
   }
@@ -1443,6 +1446,9 @@ h3 {
     grid-column: 2;
   }
   .unavailable {
+    grid-column: 2;
+  }
+  .show-row > .ticket-button {
     grid-column: 2;
   }
   .show-date {
@@ -2104,7 +2110,8 @@ h3 {
 .hero-show-list time span { font-size: 12px; }
 .hero-show-list h3 { font-size: 14px; margin: 6px 0; }
 .hero-show-list small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hero-show-list .hero-ticket-button {
+.hero-show-list .ticket-button,
+.show-row > .ticket-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2121,8 +2128,11 @@ h3 {
   white-space: nowrap;
   transition: background-color .2s ease, transform .2s ease;
 }
-.hero-show-list .hero-ticket-button:hover { background: #fa6b16; transform: translateY(-1px); }
-.hero-show-list .hero-ticket-button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.show-row > .ticket-button { justify-self: start; }
+.hero-show-list .ticket-button:hover,
+.show-row > .ticket-button:hover { background: #fa6b16; transform: translateY(-1px); }
+.hero-show-list .ticket-button:focus-visible,
+.show-row > .ticket-button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .header:not(.solid):has(~ main .hero-live-content),
 .header:not(.solid):has(~ main .hero-live-content) .navigation a { color: #fff; }
 @media (max-width: 800px) {

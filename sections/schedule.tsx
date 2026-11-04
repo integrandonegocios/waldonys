@@ -71,7 +71,7 @@ export function Schedule({
               </div>
               {event.ticketUrl ? (
                 <a
-                  className="text-link"
+                  className="ticket-button"
                   href={event.ticketUrl}
                   target="_blank"
                   rel="noopener noreferrer"
